@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الشخصية - [اسمك]</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* بطاقة الملف الشخصي */
+        
+        .profile-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+        
+        .profile-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            text-align: center;
+            color: white;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        
+        .profile-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .profile-header .title {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .profile-content {
+            padding: 40px;
+        }
+        /* الأقسام */
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+        /* المهارات */
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .skill-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-right: 4px solid #667eea;
+        }
+        
+        .skill-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+        
+        .skill-bar {
+            background: #e9ecef;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-level {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            border-radius: 4px;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+        /* الخبرات */
+        
+        .experience-item,
+        .education-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .experience-item:hover,
+        .education-item:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .item-title {
+            font-size: 1.3em;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        .item-date {
+            color: #999;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        /* روابط التواصل */
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+        }
+        /* نموذج الاتصال */
+        
+        .contact-form {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: transform 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        /* للشاشات الصغيرة */
+        
+        @media (max-width: 768px) {
+            .profile-header h1 {
+                font-size: 1.8em;
+            }
+            .profile-content {
+                padding: 20px;
+            }
+            .social-link {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- بطاقة الملف الشخصي -->
+        <div class="profile-card">
+            <div class="profile-header">
+                <!-- يمكنك تغيير الصورة بوضع رابط لصورتك -->
+                <img src="c:\Users\JAMALCENTER\Desktop\ملف شخصي\wq.jpeg" alt="الصورة الشخصية" class="profile-img" id="profileImg">
+                <h1 id="fullName"> حسين اسماعيل</h1>
+                <p class="title" id="jobTitle">مطور ويب | مصمم جرافيك</p>
+            </div>
+
+            <div class="profile-content">
+                <!-- قسم عني -->
+                <div class="section">
+                    <h2 class="section-title">من أنا</h2>
+                    <p id="aboutMe">
+                        مرحباً! أنا أحمد محمد، مطور ويب متخصص في تطوير تطبيقات الويب الحديثة. لدي شغف كبير بتعلم التقنيات الجديدة وحل المشكلات البرمجية. أسعى دائماً لتقديم حلول مبتكرة وفعالة تلبي احتياجات العملاء.
+                    </p>
+                </div>
+
+                <!-- قسم المهارات -->
+                <div class="section">
+                    <h2 class="section-title">المهارات</h2>
+                    <div class="skills-grid" id="skillsContainer">
+                        <!-- المهارات ستضاف هنا بواسطة JavaScript -->
+                    </div>
+                </div>
+
+                <!-- قسم الخبرات -->
+                <div class="section">
+                    <h2 class="section-title">الخبرات العملية</h2>
+                    <div id="experienceContainer"></div>
+                </div>
+
+                <!-- قسم التعليم -->
+                <div class="section">
+                    <h2 class="section-title">التعليم</h2>
+                    <div id="educationContainer"></div>
+                </div>
+
+                <!-- قسم التواصل -->
+                <div class="section">
+                    <h2 class="section-title">تواصل معي</h2>
+                    <div class="social-links" id="socialLinks"></div>
+
+                    <div class="contact-form" style="margin-top: 30px;">
+                        <h3 style="margin-bottom: 20px; color: #667eea;">أرسل لي رسالة</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label>الاسم</label>
+                                <input type="text" id="name" required placeholder="أدخل اسمك">
+                            </div>
+                            <div class="form-group">
+                                <label>البريد الإلكتروني</label>
+                                <input type="email" id="email" required placeholder="example@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label>الرسالة</label>
+                                <textarea id="message" rows="5" required placeholder="اكتب رسالتك هنا..."></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">إرسال الرسالة</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات الملف الشخصي - قم بتعديل هذه البيانات حسب معلوماتك
+        const personalData = {
+            fullName: "حسين اسماعيل",
+            jobTitle: "مطور ويب | مصمم جرافيك",
+            aboutMe: "مرحباً! أنا حسين اسماعيل مطور ويب متخصص في تطوير تطبيقات الويب الحديثة. لدي شغف كبير بتعلم التقنيات الجديدة وحل المشكلات البرمجية. أسعى دائماً لتقديم حلول مبتكرة وفعالة تلبي احتياجات العملاء.",
+            skills: [{
+                name: "HTML/CSS",
+                level: "95%"
+            }, {
+                name: "JavaScript",
+                level: "85%"
+            }, {
+                name: "React.js",
+                level: "80%"
+            }, {
+                name: "Python",
+                level: "75%"
+            }, {
+                name: "Node.js",
+                level: "70%"
+            }, {
+                name: "UI/UX Design",
+                level: "70%"
+            }],
+            experiences: [{
+                title: "مطور ويب    ",
+                date: "2023 - حتى الآن",
+                description: "تطوير وصيانة تطبيقات الويب باستخدام React و Node.js، العمل ضمن فريق متكامل لتقديم أفضل الحلول للعملاء."
+            }, {
+                title: "مطور Front-end ",
+                date: "2023 - 2025",
+                description: "تصميم وتطوير واجهات المستخدم باستخدام HTML، CSS، JavaScript، وتحسين أداء المواقع وتجربة المستخدم."
+            }],
+            educations: [{
+                degree: " معهد تقاني حاسوب ",
+                university: "جامعة ادلب",
+                date: "2023 - 2026",
+                description: "تخصص في تطوير البرمجيات وهندسة الويب، معدل تراكمي: ممتاز"
+            }, ],
+            socialLinks: [{
+                    name: "Facebook",
+                    url: "https://www.facebook.com/حسين اسماعيل",
+                    icon: "📘"
+                }, {
+                    name: "WhatsApp",
+                    url: "https://wa.me/963959170637",
+                    icon: "📱"
+                }, // ← أضف هذا السطر
+                {
+                    name: "البريد الإلكتروني",
+                    url: "mailto:hhhhhhdyzweerr.com",
+                    icon: "📧"
+                }
+            ]
+        };
+
+        // عرض البيانات في الصفحة
+        function loadPersonalData() {
+            // المعلومات الأساسية
+            document.getElementById('fullName').textContent = personalData.fullName;
+            document.getElementById('jobTitle').textContent = personalData.jobTitle;
+            document.getElementById('aboutMe').textContent = personalData.aboutMe;
+
+            // عرض المهارات
+            const skillsContainer = document.getElementById('skillsContainer');
+            skillsContainer.innerHTML = '';
+            personalData.skills.forEach(skill => {
+                const skillDiv = document.createElement('div');
+                skillDiv.className = 'skill-item';
+                skillDiv.innerHTML = `
+                    <div class="skill-name">${skill.name}</div>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: ${skill.level}"></div>
+                    </div>
+                `;
+                skillsContainer.appendChild(skillDiv);
+            });
+
+            // عرض الخبرات
+            const experienceContainer = document.getElementById('experienceContainer');
+            experienceContainer.innerHTML = '';
+            personalData.experiences.forEach(exp => {
+                const expDiv = document.createElement('div');
+                expDiv.className = 'experience-item';
+                expDiv.innerHTML = `
+                    <div class="item-title">${exp.title}</div>
+                    <div class="item-date">${exp.date}</div>
+                    <p>${exp.description}</p>
+                `;
+                experienceContainer.appendChild(expDiv);
+            });
+
+            // عرض التعليم
+            const educationContainer = document.getElementById('educationContainer');
+            educationContainer.innerHTML = '';
+            personalData.educations.forEach(edu => {
+                const eduDiv = document.createElement('div');
+                eduDiv.className = 'education-item';
+                eduDiv.innerHTML = `
+                    <div class="item-title">${edu.degree}</div>
+                    <div class="item-date">${edu.university} | ${edu.date}</div>
+                    <p>${edu.description}</p>
+                `;
+                educationContainer.appendChild(eduDiv);
+            });
+
+            // عرض روابط التواصل
+            const socialLinks = document.getElementById('socialLinks');
+            socialLinks.innerHTML = '';
+            personalData.socialLinks.forEach(link => {
+                const linkA = document.createElement('a');
+                linkA.className = 'social-link';
+                linkA.href = link.url;
+                linkA.target = '_blank';
+                linkA.innerHTML = `${link.icon} ${link.name}`;
+                socialLinks.appendChild(linkA);
+            });
+        }
+
+        // معالجة نموذج الاتصال
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // هنا يمكنك إضافة كود لإرسال البيانات إلى الخادم
+            alert(`شكراً ${name}!\nتم استلام رسالتك وسيتم الرد عليك قريباً.`);
+
+            // تنظيف النموذج
+            this.reset();
+        });
+
+        // تحميل البيانات عند تحميل الصفحة
+        loadPersonalData();
+
+        // إضافة تأثيرات حركية للمهارات
+        window.addEventListener('load', () => {
+            const skillLevels = document.querySelectorAll('.skill-level');
+            skillLevels.forEach(level => {
+                const width = level.style.width;
+                level.style.width = '0';
+                setTimeout(() => {
+                    level.style.width = width;
+                }, 100);
+            });
+        });
+
+        // إمكانية تغيير الصورة الشخصية
+        // يمكنك تغيير الرابط أدناه إلى رابط صورتك الفعلية
+        const profileImg = document.getElementById('profileImg');
+        // profileImg.src = "رابط_صورتك.jpg"; // قم بإلغاء التعليق وإضافة رابط صورتك
+    </script>
+</body>
+
+</html>
